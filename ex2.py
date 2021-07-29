@@ -6,6 +6,8 @@ def amount_of_results():
     while True:
         try:
             count = int(input("type the amount of result to calculate the prom"))
+            if count <= 0:
+                raise Exception
             return count
         except:
             print("input error")
