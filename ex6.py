@@ -1,7 +1,7 @@
 """Design a program that converts student score into grades(a,b,c,d, and failed)"""
 
 
-
+#modify to conver every score to grade
 def score_input():
     while True:
         try:
