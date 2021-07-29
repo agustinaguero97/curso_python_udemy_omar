@@ -38,14 +38,14 @@ def prom(result):
     print(f"the average of the results is: {promedio}")
     return promedio
 
-def pass_failed(average):
-    if average < 50:
+def pass_failed(average,score):
+    if average < score:
         print("the student does not pass ")
-    if average > 50:
+    if average >= score:
         print("the student does pass")
 
 if __name__ == '__main__':
     count = amount_of_results()
     result = result_input(count)
     average = prom(result)
-    pass_failed(average)
+    pass_failed(average,score=50) #here can modify the minimun average score of approval
