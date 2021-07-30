@@ -6,28 +6,38 @@ all the items, then he will enter the sentinel value to stop the program"""
 
 import os
 
+class InvalidFormat(Exception):
+    def __init__(self, message):
+        print(message)
+
 def create_dictionary():
-    
+
     dic_of_items = {}
     entrada = ''
     while entrada != '0':
-        entrada = input("input the name of the item: ")
+        entrada = input("input the name of the item (ENTER 0 TO EXIT THE PROGRAM): ")
         if entrada == '0':
             break
+
         else:
             try:
                 dic_of_items[entrada] = float(input(f"enter the weight in kg of {entrada}: "))
                 if dic_of_items[entrada] <= 0:
-                    raise Exception
+                    raise InvalidFormat("must be a positive number")
+
+                print(f"{entrada} __ {dic_of_items[entrada]} kg added")
+                
             except:
                 print("input a valid weight")
     
     return dic_of_items
 
+
 def create_a_txt(dic_of_items):
 
     dir_path = os.path.dirname(os.path.realpath(__file__))
     writetext = open(dir_path + '/' + "items.txt", "w")
+
     for key , value in dic_of_items.items():
             writetext.write(f"{key}̣  ____  {value} kg" + os.linesep)
     

@@ -6,7 +6,7 @@ def score_input():
     while True:
         try:
             score = int(input("type your score to conver to grades: "))
-            if score <= 0 and score < 100:
+            if score <= 0 and score > 100:
                 raise Exception
             return score
 
@@ -14,13 +14,15 @@ def score_input():
             print("score input error")
 
 def your_grade(puntaje,grades_value):
-    for key in grades_value:
-        for value in grades_value[key]:
-            if puntaje == value:
-                print(f"your grade is {key}")
-            if puntaje < 60:
-                 print("your grade is F")
-                 break
+    if puntaje < 60:
+        print("your grade is F")
+    else:
+        for key in grades_value:
+            for value in grades_value[key]:
+                if puntaje == value:
+                    print(f"your grade is {key}")
+                    break
+
 
 
 
