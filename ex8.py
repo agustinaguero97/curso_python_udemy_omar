@@ -1,8 +1,8 @@
 """"You working in a shipment company. Your manager asked from you to design a program that allows them to enter items 
 weight in order to be saverd in the shipment file. Your program should have a sentinel value, if the user finished adding
-all the items, then he will enter the sentinel value to stop the program"""
+all the items, then he will enter the sentinel value (0) to stop the program"""
 
-#i will make it that it will create a dictionary of key items and values weight and that create a .txt 
+#modified...i will make it that it will create a dictionary of key items and values weight and that create a .txt 
 
 import os
 
