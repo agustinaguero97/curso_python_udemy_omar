@@ -32,11 +32,28 @@ def evaluation(guess,random_number,intentos,min,max):
         min = guess
         return min,max
 
-if __name__ == '__main__':
+def interface():
+    print("Chose the game mode\n you guest the number (1)\n the machine guest the number (2)\n")
+    while True:
+        try:
+            respuesta = int(input('chose your option'))
+            if respuesta == 1:
+                adivina()
+                break
+            if respuesta == 2:
+                adivinador()
+                break
+            else:
+                raise Exception
+        except:
+            print('invalid input')
+
+
+def adivina():
     intentos = 7
     min = 1
     max = 100
-    print(f"Gues the number: the computer will have a number and you are gonna guest it.\nYou have {intentos} to guess")
+    print(f"Guess the number: the computer will have a number and you are gonna guest it.\nYou have {intentos} tries to guess")
     random_number = create_a_number(min,max)
     guess = player_guess(min,max)
     while True:
@@ -44,33 +61,63 @@ if __name__ == '__main__':
         if min == 0 or max == 0:
             break
         intentos -= 1
+        print(f"you have {intentos} tries left")
         if intentos == 0:
             print(f"you Lose, it was {random_number}")
             break
         guess = player_guess(min,max)
-    print("Wanna play again?")
-    
 
-# this part does not work....yet
-class Interface():
+def adivinador():
+    intentos = 7
+    min = 1
+    max = 100
+    print(f'Guess the number: you have a number from 1 to 100 and the computer will try to guess it in {intentos} tries')
+    print("hold your number in your head...")
+    while True:
+        random_number = create_a_number(min,max)
+        try:
+            respuesta = str(input(f'is {random_number} your number?:\nif it is correct(c)\nif it is lower(me)\nif it is greater(ma)\n '))
+            if respuesta != 'me' and respuesta != 'ma' and respuesta != 'c':
+                raise Exception
+            else:
+                min,max = computer_guess(respuesta,min,max,random_number)
+                if min == 0 or max == 0:
+                    print(f'in {intentos} tries left')
+                    break
+                intentos -= 1
+                if intentos == 0:
+                    print(f"i lose")
+                    break
+        except:
+            print('invalid input')
 
-    def __init__(self):
-        self.game = Game()
-        self.intentos = 7
+def computer_guess(respuesta,min,max,random_number):
+    if respuesta == 'c':
+        print('i win!')
+        return 0,0
 
-class Game():
+    if respuesta == 'me':
+        max = random_number - 1
+    if respuesta == 'ma':
+        min = random_number + 1
 
-    def __init__(self):
-        self.is_playing = True
-        self.min = 1
-        self.max = 100
-        self.num = 0
+    return min,max
 
+def replay():
+    while True:
+        try:
+            respuesta = input("Wanna play again?(y/n)")
+            if respuesta == 'y':
+                interface()
+            if respuesta == 'n':
+                print("goodbye")
+                break
+            else:
+                raise Exception
+        except:
+            print('invalid input:')
 
-class Adivina():
+if __name__ == '__main__':
 
-    def __init__(self):
-        pass
-
-class Adivinador():
-    pass
+    interface()
+    replay()
