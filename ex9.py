@@ -68,10 +68,10 @@ def adivina():
         guess = player_guess(min,max)
 
 def adivinador():
-    intentos = 7
+    intentos_maquina = 1
     min = 1
     max = 100
-    print(f'Guess the number: you have a number from 1 to 100 and the computer will try to guess it in {intentos} tries')
+    print(f'Guess the number: you have a number from 1 to 100 and the computer will try to guess it ')
     print("hold your number in your head...")
     while True:
         random_number = create_a_number(min,max)
@@ -82,11 +82,11 @@ def adivinador():
             else:
                 min,max = computer_guess(respuesta,min,max,random_number)
                 if min == 0 or max == 0:
-                    print(f'in {intentos} tries left')
+                    print(f'in {intentos_maquina} tries ')
                     break
-                intentos -= 1
-                if intentos == 0:
-                    print(f"i lose")
+                intentos_maquina += 1
+                if intentos_maquina == 100:
+                    print(f"i surrender")
                     break
         except:
             print('invalid input')
